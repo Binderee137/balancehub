@@ -1,4 +1,4 @@
-import { getServiceSupabase } from "../../lib/supabase";
+import { createClient } from "@supabase/supabase-js";
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
@@ -9,7 +9,11 @@ export async function GET(request) {
     return Response.json({ error: "Missing profileId" }, { status: 400 });
   }
 
-  // Subscription идэвхжүүлэх
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE_KEY
+  );
+
   const expiresAt = new Date();
   if (plan === "yearly") {
     expiresAt.setFullYear(expiresAt.getFullYear() + 1);
@@ -17,22 +21,15 @@ export async function GET(request) {
     expiresAt.setMonth(expiresAt.getMonth() + 1);
   }
 
-  try {
-    const supabase = getServiceSupabase();
+  await supabase.from("subscriptions").upsert({
+    profile_id: profileId,
+    plan: plan,
+    status: "active",
+    paid_at: new Date().toISOString(),
+    expires_at: expiresAt.toISOString(),
+  });
 
-    await supabase.from("subscriptions").upsert({
-      profile_id: profileId,
-      plan: plan,
-      status: "active",
-      paid_at: new Date().toISOString(),
-      expires_at: expiresAt.toISOString(),
-    });
-  } catch (error) {
-    console.error("Supabase error:", error);
-  }
-
-  // Амжилттай хуудас руу redirect
   return Response.redirect(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/?payment=success`
+    process.env.NEXT_PUBLIC_BASE_URL + "/?payment=success"
   );
 }
