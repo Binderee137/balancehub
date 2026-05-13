@@ -5,9 +5,9 @@
 }
 
 html, body {
-  background: #06080d;
-  color: #e8eaf0;
-  font-family: 'Segoe UI', -apple-system, system-ui, sans-serif;
+  background: #ffffff;
+  color: #0f172a;
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -37,6 +37,6 @@ input[type=number] {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a3142;
+  background: #cbd5e1;
   border-radius: 3px;
 }
