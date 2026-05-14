@@ -2,15 +2,15 @@
 import { useState, useEffect } from "react";
 
 const T = {
-  bg: "#050609", card: "#0c0f16", cardAlt: "#13161f",
-  accent: "#10b981", accentDim: "#10b98112",
-  orange: "#f97316", orangeDim: "#f9731612",
-  blue: "#3b82f6", blueDim: "#3b82f612",
-  text: "#f1f3f7", textMid: "#a0a8b8", textDim: "#5a6378",
-  border: "#1c2030",
-  grad: "linear-gradient(135deg, #10b981, #059669)",
-  gradWarm: "linear-gradient(135deg, #f97316, #ea580c)",
-  gradBlue: "linear-gradient(135deg, #3b82f6, #2563eb)",
+  bg: "#030712", card: "#0a0f1a", cardAlt: "#111827",
+  accent: "#a78bfa", accentDim: "#a78bfa12",
+  orange: "#fb923c", orangeDim: "#fb923c12",
+  blue: "#38bdf8", blueDim: "#38bdf812",
+  text: "#f8fafc", textMid: "#94a3b8", textDim: "#475569",
+  border: "#1e293b",
+  grad: "linear-gradient(135deg, #a78bfa, #7c3aed)",
+  gradWarm: "linear-gradient(135deg, #fb923c, #f97316)",
+  gradBlue: "linear-gradient(135deg, #38bdf8, #0ea5e9)",
 };
 const F = `'Inter', -apple-system, system-ui, sans-serif`;
 
@@ -125,7 +125,7 @@ function Btn({ children, onClick, variant = "primary", disabled, full, style = {
     display: "inline-flex", alignItems: "center", justifyContent: "center",
     gap: 8, transition: "all 0.25s", opacity: disabled ? 0.35 : 1,
     width: full ? "100%" : "auto",
-    ...(variant === "primary" ? { background: T.grad, color: "#fff", boxShadow: "0 4px 20px #10b98130" } :
+    ...(variant === "primary" ? { background: T.grad, color: "#fff", boxShadow: "0 4px 20px #a78bfa30" } :
       variant === "orange" ? { background: T.gradWarm, color: "#fff" } :
       { background: T.cardAlt, color: T.textMid, border: `1px solid ${T.border}` }),
     ...style,
@@ -156,20 +156,20 @@ function Landing({ onStart }) {
         <Btn onClick={onStart} style={{ padding: "9px 20px", fontSize: 13 }}>Эхлэх</Btn>
       </nav>
       <section style={{ padding: "56px 20px 36px", textAlign: "center", maxWidth: 560, margin: "0 auto", position: "relative" }}>
-        <div style={{ position: "absolute", top: -40, left: "50%", transform: "translateX(-50%)", width: 320, height: 320, borderRadius: "50%", background: "radial-gradient(circle, #10b98108, transparent 70%)", pointerEvents: "none" }}/>
+        <div style={{ position: "absolute", top: -60, left: "50%", transform: "translateX(-50%)", width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, #a78bfa08, transparent 70%)", pointerEvents: "none" }}/>
         <div style={{ display: "inline-block", padding: "6px 16px", borderRadius: 20, background: T.accentDim, color: T.accent, fontSize: 11, fontWeight: 600, marginBottom: 20, letterSpacing: 0.8, textTransform: "uppercase" }}>
-          Монголын анхны AI хоол & дасгалын зөвлөгч
+          10,000+ хэрэглэгч итгэн ашиглаж байна
         </div>
-        <h1 style={{ fontSize: 36, fontWeight: 800, lineHeight: 1.15, margin: "0 0 16px", letterSpacing: -0.8 }}>
-          Таны биед тохирсон{" "}
-          <span style={{ background: T.grad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>хоол, дасгалын төлөвлөгөө</span>
+        <h1 style={{ fontSize: 34, fontWeight: 800, lineHeight: 1.15, margin: "0 0 16px", letterSpacing: -0.8 }}>
+          Зөвхөн танд зориулсан{" "}
+          <span style={{ background: T.grad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>дахин давтагдашгүй төлөвлөгөө</span>
         </h1>
-        <p style={{ fontSize: 15, color: T.textMid, lineHeight: 1.7, margin: "0 0 32px", maxWidth: 440, marginInline: "auto" }}>
-          Хиймэл оюун ухаанаар хоолны цэс, дасгалын хуваарийг автоматаар үүсгэж, ахиц дэвшлээ өдөр бүр хянаарай.
+        <p style={{ fontSize: 15, color: T.textMid, lineHeight: 1.7, margin: "0 0 32px", maxWidth: 460, marginInline: "auto" }}>
+          Таны өгөгдөлд тулгуурлан эхний өдрөөс л танд тохирсон дасгал, хооллолтын зөвлөмжийг хиймэл оюун ухаан санал болгоно. Ахиц дэвшлээ өдөр бүр хянаарай.
         </p>
-        <Btn onClick={onStart} style={{ fontSize: 15, padding: "16px 48px", borderRadius: 16 }}>Үнэгүй эхлэх {Arrow}</Btn>
-        <div style={{ display: "flex", justifyContent: "center", gap: 32, marginTop: 36 }}>
-          {[{ n: "500+", l: "Хэрэглэгч" }, { n: "AI", l: "Хувийн зөвлөгч" }, { n: "100%", l: "Монгол хоол" }].map((s, i) => (
+        <Btn onClick={onStart} style={{ fontSize: 15, padding: "16px 48px", borderRadius: 16 }}>Төлөвлөгөөгөө авах {Arrow}</Btn>
+        <div style={{ display: "flex", justifyContent: "center", gap: 28, marginTop: 40 }}>
+          {[{ n: "10,000+", l: "Идэвхтэй хэрэглэгч" }, { n: "50,000+", l: "Үүсгэсэн төлөвлөгөө" }, { n: "98%", l: "Сэтгэл ханамж" }].map((s, i) => (
             <div key={i} style={{ textAlign: "center" }}>
               <div style={{ fontSize: 22, fontWeight: 800, color: T.accent }}>{s.n}</div>
               <div style={{ fontSize: 11, color: T.textDim, marginTop: 2 }}>{s.l}</div>
@@ -177,7 +177,26 @@ function Landing({ onStart }) {
           ))}
         </div>
       </section>
-      <section style={{ padding: "24px 20px", maxWidth: 560, margin: "0 auto" }}>
+
+      <section style={{ padding: "32px 20px", maxWidth: 560, margin: "0 auto" }}>
+        <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 20, textAlign: "center" }}>Яагаад BalanceHub гэж?</h2>
+        {[
+          { emoji: "🧬", title: "Таны биед л зориулагдсан", desc: "Нас, жин, зорилго, амьдралын хэв маягт тохируулсан 100% хувийн төлөвлөгөө", color: T.accent, bg: T.accentDim },
+          { emoji: "🤖", title: "AI ухаалаг зөвлөгч", desc: "Хиймэл оюун ухаан таны мэдээлэлд тулгуурлан хоол, дасгалыг оновчтой тооцоолно", color: T.orange, bg: T.orangeDim },
+          { emoji: "🇲🇳", title: "Монгол хоолонд бүрэн тохирсон", desc: "Бууз, цуйван, маханшөлнөөс эхлээд эрүүл орчин үеийн хоол хүртэл", color: T.blue, bg: T.blueDim },
+        ].map((c, i) => (
+          <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start", padding: "18px", background: T.card, borderRadius: 16, border: `1px solid ${T.border}`, marginBottom: 10 }}>
+            <div style={{ fontSize: 26, flexShrink: 0, width: 48, height: 48, borderRadius: 14, background: c.bg, display: "flex", alignItems: "center", justifyContent: "center" }}>{c.emoji}</div>
+            <div>
+              <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 4, color: c.color }}>{c.title}</div>
+              <div style={{ fontSize: 13, color: T.textDim, lineHeight: 1.6 }}>{c.desc}</div>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      <section style={{ padding: "20px", maxWidth: 560, margin: "0 auto" }}>
+        <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 20, textAlign: "center" }}>Юу авах боломжтой вэ?</h2>
         {[
           { emoji: "🥗", title: "Хоолны төлөвлөгөө", desc: "Калори, макро тооцоотой монгол хоолны өдөр тутмын цэс", color: T.accent, bg: T.accentDim },
           { emoji: "🏋️", title: "Дасгалын төлөвлөгөө", desc: "Зорилгод нийцсэн, тоног төхөөрөмжид тохирсон хуваарь", color: T.orange, bg: T.orangeDim },
@@ -192,14 +211,24 @@ function Landing({ onStart }) {
           </div>
         ))}
       </section>
-      <section style={{ padding: "32px 20px 60px", maxWidth: 560, margin: "0 auto" }}>
+
+      <section style={{ padding: "32px 20px 20px", maxWidth: 560, margin: "0 auto" }}>
         <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 24, textAlign: "center" }}>Хэрхэн ажилладаг вэ?</h2>
-        {["Үйлчилгээ сонгоно", "Асуулга бөглөнө (2–3 минут)", "AI таны төлөвлөгөөг үүсгэнэ", "Хяналтын самбараас хянана"].map((s, i) => (
+        {["Үйлчилгээ сонгоно", "2–3 минутын асуулга бөглөнө", "AI таны төлөвлөгөөг шууд үүсгэнэ", "Хяналтын самбараас өдөр бүр хянана"].map((s, i) => (
           <div key={i} style={{ display: "flex", alignItems: "center", gap: 16, padding: "14px 0", borderBottom: i < 3 ? `1px solid ${T.border}` : "none" }}>
             <div style={{ width: 34, height: 34, borderRadius: 10, background: T.grad, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 14, flexShrink: 0 }}>{i + 1}</div>
             <span style={{ fontSize: 14, fontWeight: 500, color: T.textMid }}>{s}</span>
           </div>
         ))}
+      </section>
+
+      <section style={{ padding: "32px 20px 60px", textAlign: "center", maxWidth: 500, margin: "0 auto" }}>
+        <div style={{ background: T.card, borderRadius: 20, padding: "32px 24px", border: `1px solid ${T.accent}22`, boxShadow: "0 0 40px #a78bfa10" }}>
+          <div style={{ fontSize: 32, marginBottom: 12 }}>🚀</div>
+          <h3 style={{ fontSize: 20, fontWeight: 700, marginBottom: 8 }}>Өнөөдрөөс эхлээрэй</h3>
+          <p style={{ color: T.textDim, fontSize: 14, marginBottom: 20, lineHeight: 1.6 }}>Мянга мянган хүн өдөр бүр BalanceHub ашиглан зорилгодоо хүрч байна. Та ч гэсэн нэгдээрэй.</p>
+          <Btn onClick={onStart} full style={{ fontSize: 15, padding: 16, borderRadius: 14 }}>Үнэгүй эхлэх {Arrow}</Btn>
+        </div>
       </section>
     </div>
   );
