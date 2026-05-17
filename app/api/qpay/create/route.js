@@ -1,4 +1,3 @@
-// QPay token авах
 async function getQPayToken() {
   const res = await fetch("https://merchant.qpay.mn/v2/auth/token", {
     method: "POST",
@@ -15,10 +14,16 @@ async function getQPayToken() {
 }
 
 export async function POST(request) {
-  const { plan, profileId } = await request.json();
+  const { plan } = await request.json();
 
-  const prices = { monthly: 9900, yearly: 89900 };
-  const amount = prices[plan] || prices.monthly;
+  // Үнийн тохиргоо
+  const prices = {
+    meal: { amount: 9900, desc: "Хоолны төлөвлөгөө (1 сар)" },
+    workout: { amount: 9900, desc: "Дасгалын төлөвлөгөө (1 сар)" },
+    both: { amount: 14900, desc: "Хоол + Дасгал хослол (1 сар)" },
+  };
+
+  const selected = prices[plan] || prices.both;
 
   try {
     const token = await getQPayToken();
@@ -32,10 +37,10 @@ export async function POST(request) {
       body: JSON.stringify({
         invoice_code: process.env.QPAY_INVOICE_CODE,
         sender_invoice_no: `BH-${Date.now()}`,
-        invoice_receiver_code: profileId || "guest",
-        invoice_description: `BalanceHub ${plan} subscription`,
-        amount: amount,
-        callback_url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/qpay/callback?plan=${plan}&profileId=${profileId || "guest"}`,
+        invoice_receiver_code: "guest",
+        invoice_description: `BalanceHub - ${selected.desc}`,
+        amount: selected.amount,
+        callback_url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/qpay/callback?plan=${plan}`,
       }),
     });
 
@@ -47,7 +52,8 @@ export async function POST(request) {
       qr_text: invoice.qr_text,
       qr_image: invoice.qr_image,
       urls: invoice.urls,
-      amount,
+      amount: selected.amount,
+      plan: plan,
     });
   } catch (error) {
     console.error("QPay error:", error);
